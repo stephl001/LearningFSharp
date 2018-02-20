@@ -1,0 +1,6 @@
+FSharp.Data
+FSharp.Charting
+group Tests
+FSUnit
+NUnit
+FSCheck
