@@ -8,9 +8,9 @@ module SgMarketsTypes =
         | Developer
         | Tester
         | BusinessAnalyst
-    type SgTeamMember = 
+    type TeamMember = 
         | SingleMember of Person*Position
-        | Manager of SgTeamMember list
+        | Manager of TeamMember list
 
     [<Measure>] type month
     [<Measure>] type EUR
@@ -19,12 +19,6 @@ module SgMarketsTypes =
 
     type ProductDef = { Duration: int<month>; Value: decimal<USD> }
     
-    type Product = 
-        | Autocall of AutocallProductFamily
-        | ReverseConvertible
-    and AutocallProductFamily =
-        | PhoenixDouble of ProductDef
-
     type CurrencyRate<[<Measure>]'u, [<Measure>]'v> = 
         { Rate: float<'u/'v>; Date: System.DateTime}
 (*
