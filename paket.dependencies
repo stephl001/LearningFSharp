@@ -1,9 +1,12 @@
 source https://www.nuget.org/api/v2
+nuget FSCheck
 nuget FSharp.Charting
 nuget FSharp.Data
+nuget FSUnit
+nuget NUnit
 
 group Tests
 source https://www.nuget.org/api/v2
 
-nuget FSCheck
-nuget FSUnit
+nuget fscheck
+nuget NUnit
