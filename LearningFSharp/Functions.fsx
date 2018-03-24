@@ -337,9 +337,10 @@ open SomePerson
 let printFullName person = 
     printfn "Name is %s" (fullName person) 
 
+    (*
 let printFullName2 person = 
     printfn "Name is %s" (person.FullName)    //Does not compile!!!
-
+    *)
 (* Methods don’t play well with higher order functions *)
 let list = [
     SomePerson.create "Andy" "Anderson";

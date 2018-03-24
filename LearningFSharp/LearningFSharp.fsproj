@@ -73,6 +73,10 @@
     <Compile Include="KataGreedTests.fs" />
     <None Include="KataGreed.fsx" />
     <Content Include="App.config" />
+    <None Include="Functions.fsx" />
+    <Compile Include="bowling.fs" />
+    <Compile Include="KataRomanNumerals.fs" />
+    <Compile Include="BowlingTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
