@@ -75,7 +75,8 @@
     <Content Include="App.config" />
     <None Include="Functions.fsx" />
     <Compile Include="bowling.fs" />
-    <Compile Include="BowlingTests.fs" />
+    <Compile Include="BowlingTestsLunch.fs" />
+    <None Include="BowlingTests.fs" />
     <Compile Include="KataRomanNumerals.fs" />
     <Compile Include="GameOfLife.fs" />
   </ItemGroup>

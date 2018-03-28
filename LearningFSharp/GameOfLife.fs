@@ -8,6 +8,18 @@ type Generation =
     | Generation of Grid*GenerationId
     static member FromGrid grid =
         Generation (grid,GenerationId 1)
+
+
+let mappings = 
+    [ for x in [-1 .. 1] do
+        for y in [-1 .. 1] do
+            yield (x,y) ]
+
+let project (a,b) =
+    mappings |> List.map (fun (x,y) -> (a+x,b+y))
+
+
+
  
 let private getNeighbors (Grid g) row col =
     let gridWidth = g |> Array2D.length2
