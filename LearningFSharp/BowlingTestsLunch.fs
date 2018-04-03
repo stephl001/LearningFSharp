@@ -7,7 +7,7 @@ module BowlingTestsLunch =
     open NUnit.Framework
     open FsCheck
 
-    let scoreFromList = ScoreCard >> scoreGame
+    //let scoreFromList = ScoreCard >> scoreGame
 
     [<Test>]
     let firstTest() =
