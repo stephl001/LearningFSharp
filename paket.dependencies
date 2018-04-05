@@ -1,5 +1,6 @@
 source https://www.nuget.org/api/v2
 nuget FSCheck
+nuget FsCheck.Nunit
 nuget FSharp.Charting
 nuget FSharp.Data
 nuget FSUnit
