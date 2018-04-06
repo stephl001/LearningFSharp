@@ -82,6 +82,8 @@
     <Compile Include="Calculator.fs" />
     <Compile Include="CalculatorTests.fs" />
     <None Include="Calculator.fsx" />
+    <Compile Include="RailroadOrientedProgramming.fs" />
+    <None Include="RailroadOrientedProgramming.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
