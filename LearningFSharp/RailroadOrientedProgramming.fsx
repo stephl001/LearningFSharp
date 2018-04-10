@@ -1,31 +1,33 @@
-﻿open System.IO
-
-type GenerationDataHeaderError = 
-    | GenerationIdInvalidFormat
-    | GenerationDimensionsInvalidFormat
-    | GenerationDimensionsOutOfBound
-type ActualLineCount = ActualLineCount of int
-type LineIndex = LineIndex of int
-type ColumnCount = ColumnCount of int
-type GenerationError =
-    /// File IO Error
-    | FileNotFound of string
-    /// Validation Errors
-    | InvalidGenerationDataHeader of GenerationDataHeaderError
-    | MissingLines of ActualLineCount
-    | MissingColumns of LineIndex
-    | InvalidCharacter of char
-type GenerationData = GenerationData of string list
-type FileLineReader = string -> Result<GenerationData,GenerationError>
-type GenerationDataValidator = GenerationData -> Result<GenerationData,GenerationError>
-type GenerationDataSanitizer = GenerationData -> GenerationData
-type GenerationDataLineSanitizer = string -> string
-type GenerationHeader = { Id: int; LineCount: int; RowCount: int }
-type GenerationInfo = { Header: GenerationHeader; Lines: string list }
-type GenerationHeaderReader = GenerationData -> GenerationHeader
-type GenerationInfoReader = GenerationData -> GenerationInfo
+﻿open System.Text.RegularExpressions
 
 type CellState = Dead | Alive
-type Generation = { Id: int; Cells: CellState [,] }
-type GenerationReader = GenerationInfo -> Generation
+type Generation = Generation of CellState [,]
+type GenerationData = { Id: int; Lines: int; Columns: int; Data: string list }
+type InputReader = unit -> GenerationData
 
+let (|GenerationId|_|) line = 
+    let regex = new Regex(@"^Generation:\s(\d+)$")
+    let m = regex.Match(line)
+    if m.Success 
+    then Some (m.Groups.Item(1).Value|>int)
+    else None
+let (|Dimension|_|) line =
+    let regex = new Regex(@"^(\d+)\s(\d+)$")
+    let m = regex.Match(line)
+    if m.Success 
+    then Some (m.Groups.Item(1).Value|>int,m.Groups.Item(2).Value|>int)
+    else None
+
+let readGenerationData = function
+| (GenerationId id)::(Dimension d)::xs -> {Id=id; Lines=fst d; Columns=snd d; Data=xs}
+| _ -> failwith "Could not read generation data"
+
+let lineMapper (line:string) =
+    let toCellState = function
+    | '.' -> Dead | '*' -> Alive | _ -> failwith "Invalid character"
+
+    line |> Seq.map toCellState |> List.ofSeq
+
+let readGeneration (reader:InputReader) = 
+    let generationData = reader()
+    generationData.Data |> (List.map lineMapper >> array2D >> Generation)

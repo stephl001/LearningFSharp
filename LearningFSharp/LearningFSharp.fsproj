@@ -84,6 +84,8 @@
     <None Include="Calculator.fsx" />
     <Compile Include="RailroadOrientedProgramming.fs" />
     <None Include="RailroadOrientedProgramming.fsx" />
+    <Compile Include="TexasHoldemKata.fs" />
+    <None Include="TexasHoldemKata.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
