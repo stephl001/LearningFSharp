@@ -85,7 +85,10 @@
     <Compile Include="RailroadOrientedProgramming.fs" />
     <None Include="RailroadOrientedProgramming.fsx" />
     <Compile Include="TexasHoldemKata.fs" />
+    <Compile Include="PokerHandParser.fs" />
+    <Compile Include="PokerScorer.fs" />
     <None Include="TexasHoldemKata.fsx" />
+    <Compile Include="TexasHoldemKataTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
