@@ -20,11 +20,11 @@ module TexasHoldemKataTests =
         allCards 
         |> List.map parseCard 
         |> List.distinct 
-        |> should haveLength 52
+        |> should haveLength 13
 
     [<Test>]
     let ``Make sure we can parse a single poker hand``()  =
         parseCards (String.Join(" ", allCards))
         |> List.distinct 
-        |> should haveLength 52
+        |> should haveLength 13
 

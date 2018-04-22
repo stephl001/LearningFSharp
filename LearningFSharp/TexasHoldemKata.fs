@@ -19,21 +19,21 @@ module TexasHoldemKata =
     [<CustomEquality;CustomComparison>]
     type Card = 
     | Card of Rank*Suit
-        override x.Equals(obj) =
-            let equalsCard (Card (r1,_)) (Card (r2,_)) = r1 = r2
-            match obj with
-            | :? Card as c -> equalsCard x c
-            | _ -> false
         override x.GetHashCode() = 
             let (Card (r,_)) = x
             r.GetHashCode()
+        override x.Equals otherCard =
+            let equalsCard (Card (r1,_)) (Card (r2,_)) = (r1 = r2)
+            match otherCard with
+            | :? Card as c -> equalsCard x c
+            | _ -> false
         interface IComparable with 
-            member x.CompareTo obj =
+            member x.CompareTo otherCard =
                 let compareCard (Card (r1,_)) (Card (r2,_)) = 
                     if r1>r2 then -1 elif r1<r2 then 1 else 0
-                match obj with
-                | :? Card as c -> compareCard x c
-                | _ -> 1
+                match otherCard with
+                | :? Card as c -> compareCard c x
+                | _ -> -1
     type CommunityCards =
         | Flop of Card*Card*Card
         | Turn of Card*Card*Card*Card
