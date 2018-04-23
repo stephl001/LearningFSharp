@@ -15,6 +15,9 @@ module TexasHoldemKata =
             | Two -> 2 | Three -> 3 | Four -> 4 | Five -> 5 | Six -> 6 | Seven -> 7 | Eight -> 8 
             | Nine -> 9 | Ten -> 10 | Jack -> 11 | Queen -> 12 | King -> 13 | Ace -> 14
             rankVal r1 - rankVal r2
+    type SuiteRank = 
+        | LowAce
+        | Normal of Rank
 
     [<CustomEquality;CustomComparison>]
     type Card = 
@@ -43,20 +46,20 @@ module TexasHoldemKata =
     type Pair = Card*Card
     type Triple = Card*Card*Card
     type Quads = Card*Card*Card*Card
-    type Suite = Card*Card*Card*Card*Card
- 
+    type Suite = (SuiteRank*Card)*Card*Card*Card*Card
+    type Singles = Card*Card*Card*Card*Card
+
     type SingleKicker = Card
     type DoubleKicker = Card*Card
     type TripleKicker = Card*Card*Card
-    type QuadKicker = Card*Card*Card*Card
  
     type PokerHand =
-        | HighCard of Card * QuadKicker
+        | HighCard of Singles
         | OnePair  of Pair * TripleKicker
         | DoublePair  of Pair * Pair * SingleKicker
         | ThreeOfaKind of Triple * DoubleKicker
         | Straight of Suite
-        | Flush of Suite
+        | Flush of Singles
         | FullHouse of Triple * Pair
         | FourOfaKind of Quads * SingleKicker
         | StraightFlush of Suite
