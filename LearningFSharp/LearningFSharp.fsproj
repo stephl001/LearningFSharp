@@ -87,6 +87,7 @@
     <Compile Include="TexasHoldemKata.fs" />
     <Compile Include="PokerHandParser.fs" />
     <Compile Include="PokerScorer.fs" />
+    <Compile Include="PokerHandPrinter.fs" />
     <None Include="TexasHoldemKata.fsx" />
     <Compile Include="TexasHoldemKataTests.fs" />
   </ItemGroup>

@@ -1,9 +1,12 @@
 ﻿#load "TexasHoldemKata.fs"
 #load "PokerHandParser.fs"
 #load "PokerScorer.fs"
-open LearningFSharp.TexasHoldemKata
-open LearningFSharp.PokerHandParser
-open LearningFSharp.PokerScorer 
+#load "PokerHandPrinter.fs"
+open LearningFSharp
+open TexasHoldemKata
+open PokerHandParser
+open PokerScorer 
+open PokerHandPrinter
 
 let fastParse = parseCards >> matchCardList
 //let cardListToString cardList =
